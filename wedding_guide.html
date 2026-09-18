@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Darius & Ali — Valencia & Vilafamés</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --clay:    #B5553A;
+      --clay-lt: #D4735A;
+      --sand:    #F7F3EC;
+      --linen:   #EDE9DF;
+      --linen-dk:#DDD8CC;
+      --ink:     #2C2A27;
+      --ink-lt:  #5A5650;
+      --sage:    #8A9E85;
+      --sage-lt: #C5D4C2;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--sand);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.65;
+    }
+
+    /* ── HERO ─────────────────────────────────────────────────── */
+    .hero {
+      background: var(--ink);
+      color: var(--sand);
+      padding: 80px 24px 72px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 60% 40%, #4a3a2e 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sage-lt);
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garant', serif;
+      font-size: clamp(52px, 10vw, 96px);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      position: relative;
+      margin-bottom: 8px;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--clay-lt);
+    }
+    .hero-sub {
+      font-family: 'Cormorant Garant', serif;
+      font-size: clamp(18px, 3.5vw, 26px);
+      font-weight: 300;
+      font-style: italic;
+      color: #b8b0a6;
+      margin-bottom: 40px;
+      position: relative;
+    }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 32px;
+      position: relative;
+    }
+    .hero-meta-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+    .hero-meta-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--sage);
+    }
+    .hero-meta-value {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--sand);
+    }
+    .hero-divider {
+      width: 40px;
+      height: 1px;
+      background: var(--clay);
+      margin: 0 auto 36px;
+      position: relative;
+    }
+
+    /* ── NAV ──────────────────────────────────────────────────── */
+    .nav {
+      background: var(--linen);
+      border-bottom: 1px solid var(--linen-dk);
+      padding: 0 24px;
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .nav a {
+      display: block;
+      padding: 16px 20px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-lt);
+      text-decoration: none;
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .nav a:hover { color: var(--clay); border-color: var(--clay); }
+
+    /* ── LAYOUT ───────────────────────────────────────────────── */
+    .section {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 72px 24px;
+    }
+    .section-alt {
+      background: var(--linen);
+    }
+    .section-alt .section {
+      /* same max-width, just bg differs */
+    }
+
+    /* ── SECTION HEADINGS ─────────────────────────────────────── */
+    .section-header {
+      margin-bottom: 40px;
+    }
+    .section-header h2 {
+      font-family: 'Cormorant Garant', serif;
+      font-size: clamp(32px, 6vw, 52px);
+      font-weight: 300;
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+    .section-header .lead {
+      font-size: 15px;
+      color: var(--ink-lt);
+      font-style: italic;
+      font-family: 'Cormorant Garant', serif;
+      font-size: 19px;
+      line-height: 1.5;
+    }
+
+    /* ── INTRO GRID ───────────────────────────────────────────── */
+    .intro-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid var(--linen-dk);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-bottom: 36px;
+    }
+    .intro-cell {
+      padding: 20px 22px;
+      border-right: 1px solid var(--linen-dk);
+    }
+    .intro-cell:last-child { border-right: none; }
+    .intro-cell-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 6px;
+    }
+    .intro-cell-value {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 1.3;
+    }
+    .intro-body {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--ink-lt);
+      max-width: 60ch;
+    }
+
+    /* ── CARDS ────────────────────────────────────────────────── */
+    .cards { display: flex; flex-direction: column; gap: 2px; }
+
+    .card {
+      background: var(--sand);
+      border-left: 3px solid var(--clay);
+      padding: 22px 24px;
+    }
+    .section-alt .card { background: var(--sand); }
+    .card-title {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .card-body {
+      font-size: 14.5px;
+      color: var(--ink-lt);
+      line-height: 1.7;
+      max-width: 58ch;
+    }
+    .card-tag {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--sage);
+    }
+    .card-address {
+      margin-top: 6px;
+      font-size: 12px;
+      color: var(--clay);
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* ── STEPS ────────────────────────────────────────────────── */
+    .steps { display: flex; flex-direction: column; gap: 0; }
+    .step {
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      gap: 16px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--linen-dk);
+    }
+    .step:last-child { border-bottom: none; }
+    .step-num {
+      width: 32px;
+      height: 32px;
+      border: 1.5px solid var(--clay);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--clay);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .step-title {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 21px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .step-body {
+      font-size: 14.5px;
+      color: var(--ink-lt);
+      line-height: 1.7;
+      max-width: 54ch;
+    }
+
+    /* ── CALLOUT BOX ──────────────────────────────────────────── */
+    .callout {
+      background: var(--ink);
+      color: var(--sand);
+      padding: 24px 28px;
+      margin-bottom: 32px;
+      border-radius: 2px;
+    }
+    .callout-title {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--sand);
+    }
+    .callout-body {
+      font-size: 14.5px;
+      line-height: 1.7;
+      color: #c8c0b8;
+      max-width: 54ch;
+    }
+
+    /* ── ESSENTIALS ───────────────────────────────────────────── */
+    .essentials { display: flex; flex-direction: column; gap: 2px; }
+    .essential {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 16px;
+      align-items: start;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--linen-dk);
+    }
+    .essential:last-child { border-bottom: none; }
+    .essential-icon {
+      font-size: 22px;
+      padding-top: 2px;
+    }
+    .essential-title {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .essential-body {
+      font-size: 14.5px;
+      color: var(--ink-lt);
+      line-height: 1.7;
+      max-width: 54ch;
+    }
+
+    /* ── FOOTER ───────────────────────────────────────────────── */
+    .footer {
+      background: var(--ink);
+      color: #8a8278;
+      text-align: center;
+      padding: 48px 24px;
+    }
+    .footer-name {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 28px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--sand);
+      margin-bottom: 8px;
+    }
+    .footer-sub {
+      font-size: 13px;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── RESPONSIVE ───────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .intro-grid { grid-template-columns: 1fr; }
+      .intro-cell { border-right: none; border-bottom: 1px solid var(--linen-dk); }
+      .intro-cell:last-child { border-bottom: none; }
+      .nav a { padding: 14px 14px; font-size: 11px; }
+      .hero { padding: 60px 20px 56px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <p class="hero-eyebrow">You're invited</p>
+    <h1>Darius <em>&</em> Ali</h1>
+    <p class="hero-sub">Valencia &amp; Vilafamés, Spain</p>
+    <div class="hero-divider"></div>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Wedding day</span>
+        <span class="hero-meta-value">Saturday, October 17</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Venue</span>
+        <span class="hero-meta-value">Vilafamés, Spain</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Optional meetup</span>
+        <span class="hero-meta-value">Valencia, Oct 13–15</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAV -->
+  <nav class="nav" aria-label="Guide sections">
+    <a href="#where">Where We'll Be</a>
+    <a href="#getting-there">Getting There</a>
+    <a href="#valencia">In Valencia</a>
+    <a href="#vilafames">In Vilafamés</a>
+    <a href="#essentials">Day-of Essentials</a>
+  </nav>
+
+  <!-- WHERE WE'LL BE -->
+  <div id="where">
+    <div class="section">
+      <div class="section-header">
+        <h2>Where we'll be</h2>
+        <p class="lead">The ceremony is October 17 in Vilafamés — a hilltop village about an hour from Valencia. Some of us will be in Valencia in the days beforehand; not required, but come say hello if your travel overlaps.</p>
+      </div>
+
+      <div class="intro-grid" style="margin-bottom: 32px;">
+        <div class="intro-cell">
+          <div class="intro-cell-label">Wedding day</div>
+          <div class="intro-cell-value">Sat, Oct 17 — Vilafamés</div>
+        </div>
+        <div class="intro-cell">
+          <div class="intro-cell-label">Optional meetup</div>
+          <div class="intro-cell-value">Valencia, Oct 13–15</div>
+        </div>
+        <div class="intro-cell">
+          <div class="intro-cell-label">Travel time</div>
+          <div class="intro-cell-value">~1 hr by car</div>
+        </div>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <div class="card-title">Valencia — October 13 to 15 (optional)</div>
+          <p class="card-body">We'll be staying in Ruzafa, Valencia's laid-back café-and-boutique neighborhood just south of the old town. If your trip overlaps with these dates, let us know — happy to grab a coffee or a meal. No need to plan around it if it doesn't line up.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Vilafamés — the wedding, October 17</div>
+          <p class="card-body">We'll head north to Vilafamés on October 16 to get settled in. The ceremony is Saturday, October 17, on the terrace of Ali's Aunt Martha's summer home.</p>
+          <p class="card-address">Carrer Mesón, 9 — Vilafamés, Spain 12192</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GETTING THERE -->
+  <div id="getting-there" class="section-alt">
+    <div class="section">
+      <div class="section-header">
+        <h2>Getting there</h2>
+        <p class="lead">Fly into Valencia, then rent a car. It's by far the easiest way to reach Vilafamés and get around once you're there.</p>
+      </div>
+
+      <div class="callout">
+        <div class="callout-title">Rental car is the way to go</div>
+        <p class="callout-body">Valencia to Vilafamés is about an hour by car. Vilafamés has no train station and is not reachable by rail — a car (or a pre-arranged taxi) is genuinely the only practical way to get there and back, and it also makes exploring the village and surrounding area much easier once you've arrived.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div>
+            <div class="step-title">Land in Valencia (VLC)</div>
+            <p class="step-body">Pick up a rental car at the airport, or take the metro into the city first (about 25 minutes) and rent one later.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div>
+            <div class="step-title">Optional time in Valencia</div>
+            <p class="step-body">If you're staying in the city for a few days beforehand, no car is needed there — it's easily walkable, with metro and taxis for everything else.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div>
+            <div class="step-title">Drive to Vilafamés — about 1 hour</div>
+            <p class="step-body">The direct drive from Valencia to Vilafamés is roughly an hour. Trains do run from Valencia to Castellón de la Plana, but Castellón is as far as the rail line goes — Vilafamés itself has no train service, so a car for this leg is essentially required.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IN VALENCIA -->
+  <div id="valencia">
+    <div class="section">
+      <div class="section-header">
+        <h2>In Valencia</h2>
+        <p class="lead">A big, walkable, sun-drenched city — plan for at least a full day here.</p>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <div class="card-title">City of Arts &amp; Sciences</div>
+          <p class="card-body">Santiago Calatrava's futuristic complex of museums, an aquarium, and an IMAX dome — Valencia's most photographed corner.</p>
+          <span class="card-tag">Half a day &nbsp;·&nbsp; easy by metro</span>
+        </div>
+        <div class="card">
+          <div class="card-title">Mercado Central</div>
+          <p class="card-body">One of Europe's oldest working markets, under a beautiful Art Nouveau iron-and-glass roof. Go hungry — jamón, fresh juice, and local produce everywhere.</p>
+          <span class="card-tag">Morning visit recommended</span>
+        </div>
+        <div class="card">
+          <div class="card-title">Turia Gardens</div>
+          <p class="card-body">A former riverbed turned nine-kilometer park that winds through the whole city — great for a run, a stroll, or cutting between neighborhoods.</p>
+          <span class="card-tag">Free &nbsp;·&nbsp; always open</span>
+        </div>
+        <div class="card">
+          <div class="card-title">Barrio del Carmen</div>
+          <p class="card-body">The old town's tangle of narrow streets, street art, tapas bars, and small plazas — best explored slowly, ideally after dark.</p>
+          <span class="card-tag">Evening &nbsp;/&nbsp; tapas crawl</span>
+        </div>
+        <div class="card">
+          <div class="card-title">Paella, properly</div>
+          <p class="card-body">Valencia is its birthplace — the traditional version uses rabbit and chicken, not seafood. Worth seeking out a spot that makes it to order; it takes time, and that's the sign it's real.</p>
+          <span class="card-tag">Lunch, not dinner — it's a midday dish here</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IN VILAFAMÉS -->
+  <div id="vilafames" class="section-alt">
+    <div class="section">
+      <div class="section-header">
+        <h2>In Vilafamés</h2>
+        <p class="lead">A hilltop village of about 1,500 people, built from the same warm pink-toned stone as its castle. Small enough to see in an afternoon, atmospheric enough to want longer.</p>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <div class="card-title">The old town &amp; castle</div>
+          <p class="card-body">Wander up through the medieval streets to the ruined 11th-century Castell de Vilafamés at the summit — the walk itself, past red-stone houses and stepped alleys, is the main event.</p>
+          <span class="card-tag">Wear shoes you can climb cobblestones in</span>
+        </div>
+        <div class="card">
+          <div class="card-title">MACVAC — Museum of Contemporary Art</div>
+          <p class="card-body">A genuinely excellent modern art museum for a village this size, housed in a former palace at the base of the old town.</p>
+          <span class="card-tag">Tue–Sun &nbsp;·&nbsp; roughly 10–2 &amp; 4–6:30</span>
+        </div>
+        <div class="card">
+          <div class="card-title">La Roca Grossa</div>
+          <p class="card-body">A striking mass of reddish rock right in the heart of the village — one of Vilafamés's most recognizable landmarks and a good orientation point.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Santa María church</div>
+          <p class="card-body">A 16th-century church partway up the climb to the castle, with a reddish façade and a small viewpoint beside it looking out over the valley.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Local wine</div>
+          <p class="card-body">The area sits on a small wine route through the surrounding hills, ending at a bodega in the village itself — worth a stop if anyone's around a day early.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY-OF ESSENTIALS -->
+  <div id="essentials">
+    <div class="section">
+      <div class="section-header">
+        <h2>Day-of essentials</h2>
+        <p class="lead">A few practical things about the venue and the village that will save you a headache on Saturday.</p>
+      </div>
+      <div class="essentials">
+        <div class="essential">
+          <div class="essential-icon">⚡</div>
+          <div>
+            <div class="essential-title">Bring a plug adapter</div>
+            <p class="essential-body">Spain uses the two-round-pin Europlug (Type C/F), 230V. Pack a travel adapter — and a portable charger, since phones will be working hard for photos all day.</p>
+          </div>
+        </div>
+        <div class="essential">
+          <div class="essential-icon">📶</div>
+          <div>
+            <div class="essential-title">No WiFi at the venue</div>
+            <p class="essential-body">The summer home where the ceremony is held doesn't have WiFi. Download offline maps, playlists, and anything you'll want on hand beforehand, and let anyone expecting to reach you know you may be offline for the day.</p>
+          </div>
+        </div>
+        <div class="essential">
+          <div class="essential-icon">🅿️</div>
+          <div>
+            <div class="essential-title">Park in the designated area</div>
+            <p class="essential-body">Parking is in the village's designated lot (12192 Vilafamés, Province of Castellón, Spain), not at the house itself (Carrer Mesón, 9) — it's free, but plan a short walk from there and build in a few extra minutes.</p>
+          </div>
+        </div>
+        <div class="essential">
+          <div class="essential-icon">👟</div>
+          <div>
+            <div class="essential-title">Comfortable shoes for cobblestones</div>
+            <p class="essential-body">Both the village and the walk from parking involve uneven stone streets — worth factoring into your outfit, especially for heels.</p>
+          </div>
+        </div>
+        <div class="essential">
+          <div class="essential-icon">☀️</div>
+          <div>
+            <div class="essential-title">October weather</div>
+            <p class="essential-body">Expect warm, sunny days (upper 60s–70s°F) and cooler evenings — a light layer for after sunset is a good idea.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-name">Darius &amp; Ali</div>
+    <p class="footer-sub">Can't wait to celebrate with you in Valencia &amp; Vilafamés.</p>
+  </footer>
+
+</body>
+</html>
